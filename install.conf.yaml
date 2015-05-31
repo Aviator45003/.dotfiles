@@ -1,5 +1,6 @@
 - clean: ['~']
 
+
 - link:
     ~/.profile:
         path: profile
@@ -87,4 +88,13 @@
         relink: false
         force: false
 
+- shell:
+        - ./setup/vim-plug
+
+- link:
+        ~/.vim/autoload/plug.vim:
+            path: vim/autoload/plug.vim
+            create: true
+            relink: false
+            force: false
 

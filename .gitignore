@@ -1,2 +1,3 @@
 config/vimprobable/cookies
 config/vimprobable/history
+vim/autoload/plug.vim
