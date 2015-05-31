@@ -1,0 +1,200 @@
+" Gets rid of all the crap that Vim does to be vi compatible.
+" It's 2015 - we don't need to be compatible with vi at the expense
+"    of functionality any more.
+set nocompatible
+
+
+""" Vim Plugins and Management """
+" Plug setup.
+call plug#begin('~/.vim/plugged')
+	" Formula.
+	"  Github Repo.
+	"  Plug 'name/project'
+	Plug 'vim-scripts/VimOutliner'", { 'for': 'otl' }
+	Plug 'Aviator45003/vim-script-refactor'
+	Plug 'christoomey/vim-tmux-navigator'
+	Plug 'dahu/vim-fanfingtastic'
+	Plug 'majutsushi/tagbar'
+"	Plug 'kien/ctrlp.vim'
+	Plug 'joonty/vdebug', { 'for': 'php' }
+	Plug 'elzr/vim-json'
+	Plug 'dahu/vim-lotr'
+call plug#end()
+" Plug end.
+
+
+" For backup versioning.
+if has("vms")
+	set nobackup    " do not keep a backup file, use versions instead
+else
+	set backup      " keep a backup file
+endif
+
+
+""" Special File Setup """
+" Because it gets annoying when you are editing a file in Dropbox and the
+" .swp file gets shared...
+set dir=~/.vim/swaps
+" Because we also want our backup files to not be all over.
+set backupdir=~/.vim/backups
+" Undo files.
+set undodir=~/.vim/undo
+set undofile
+
+
+""" Leader Commands """
+" Change the map-leader.
+let mapleader=","
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ve :tabe $MYVIMRC<CR>
+nmap <silent> <leader>vs :so $MYVIMRC<CR>
+" Quickly switch panes.
+nnoremap <leader>w <C-w><C-w>
+" Reselect just-pasted text for ease of manipulation.
+nnoremap <leader>v V`]
+" Toggle digraphs on and off
+nnoremap <leader>d :setlocal digraph!<CR>
+" Also in Insert mode so I don't need to switch out
+inoremap <leader>d <C-o>:setlocal digraph!<CR>
+" Json formatting.
+map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
+" I want to write to file in insert mode!
+inoremap <leader>w <C-o>:w<CR>
+" Toggle the tagbar, https://github.com/majutsushi/tagbar
+nnoremap <leader>t :TagbarToggle<CR>
+
+
+""" Shortcuts """
+" Toggle "Paste Mode"
+set pastetoggle=<F2>
+" A spelling toggle.
+nnoremap <F3> :setlocal spell! spelllang=en_us<CR>
+" And I want to get out of insert mode with ii.
+" inoremap ii <C-o>
+
+
+" Search settings
+" If you tack on a /g to the end of your s&r line, only the first. Otherwise,
+" global by default.
+set gdefault
+" Case insensitive search unless mixed case search string
+set ignorecase
+set smartcase
+" Highlight all, incremental searching, so on and so forth.
+set incsearch
+set showmatch
+set hlsearch
+" And <leader><space> clears the search
+nnoremap <leader><space> :noh<cr>
+
+
+""" Movement Shortcuts """
+" To force me to do things right. No arrow keys.
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+" Make paragraphs sane.
+nnoremap j gj
+nnoremap k gk
+" Remap for faster pane navigation
+" There is a plugin for that now. Plug 'christoomey/vim-tmux-navigator'
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
+" Navigate across bracket pairs with tabs.
+nnoremap <tab> %
+vnoremap <tab> %
+" Backspace over everything.
+set backspace=indent,eol,start
+
+
+""" Environment Settings """
+" Use UTF-8
+set encoding=utf-8
+" Hide buffers instead of replacing them. Careful.
+set hidden
+" Security modelines bug.
+set modelines=0
+" Statusbar always there.
+set laststatus=2
+" Show what mode we are in (Insert, Replace, or Visual)
+set showmode
+" We have a fast connection
+set ttyfast
+" This seems to exist in the Archlinux VimRC, but useful to have.
+set ruler
+" Visual Bell
+set visualbell
+" See X lines above and below the cursor.
+set scrolloff=3
+" Stupidly doesn't match Dr. or Mrs. and that is a problem....
+set spellcapcheck=
+" Be relative...
+"set relativenumber
+" Actually don't.
+set norelativenumber
+" But show current line number rather than 0.
+set number
+" Highlight the line the cursor is on
+"set cursorline
+" Actually don't.
+set nocursorline
+" Spelling by default
+set spell
+
+
+""" Text Formatting """
+" Formatting magic.
+set formatoptions=rwnl1j
+" Length of Lines
+set wrap  " Keep them going.
+set textwidth=79
+set colorcolumn=80
+
+
+""" Vim Commands """
+" Completion of commands.
+set wildmenu
+set wildmode=list:longest
+" Show information.
+set showcmd
+
+
+""" Coding Settings """
+" set show matching parenthesis
+set showmatch
+" Auto indentation.
+set autoindent
+" Syntax always on, please.
+syntax on
+" This will fold us.
+set foldmethod=syntax
+" Python Stuff
+au FileType py set expandtab
+au FileType py set tabstop=4
+au FileType py set softtabstop=4
+au FileType py set shiftwidth=4
+" Refactor Plugin maps
+nnoremap <leader>ree :call ExtractMethod()<ENTER>
+nnoremap <leader>rep :call LocalVariableToParameter()<ENTER>
+nnoremap <leader>ren :call RenameVariable()<ENTER>
+nnoremap <leader>rer :call RemoveParameter()<ENTER>
+nnoremap <leader>reo :call ReorderParameters()<ENTER>
+nnoremap <leader>rec :call IntroduceConstant()<ENTER>
+
+
+""" Special Commands for Specific Files """
+" Reload Xresources when it changes
+augroup Xdefaults
+	autocmd!
+	" Reload the Xresources file on close and write
+	autocmd VimLeave ~/.Xresources !xrdb -merge ~/.Xresources
+	" And write.
+	autocmd BufWritePost,FileWritePost ~/.Xresources !xrdb -merge ~/.Xresources
+augroup END

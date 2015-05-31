@@ -1,0 +1,13 @@
+[user]
+	email = aviator45003@gmail.com
+	name = The Aviator
+[core]
+	editor = vim
+[merge]
+	tool = vimdiff
+[github]
+	user = Aviator45003
+[color]
+	ui = true
+[push]
+	default = current

@@ -1,0 +1,67 @@
+# If we can, profile profile profile!
+if [ -f ~/.profile ]; then
+	. ~/.profile
+fi
+
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _expand _complete _ignored
+zstyle :compinstall filename '/home/tmc/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.zshhist
+HISTSIZE=1000
+SAVEHIST=10000
+setopt appendhistory autocd beep extendedglob nomatch notify
+bindkey -v
+# End of lines configured by zsh-newuser-install
+
+# Manually added.
+
+alias ls='ls --color=y'
+alias l='ls'
+alias la='ls -a'
+alias ll='l -l'
+alias grep='grep --color=always'
+alias tudu='vim ~/todo.otl'
+alias emacs='emacs -nw'
+alias please='sudo'
+
+# Let's colorize our PS1!
+autoload -U colors && colors
+export PROMPT="%B%(!,%F{red},%F{blue})┌-%f%b%F{yellow}(%T)%f %B%(!,%F{red},%F{green})%n%f%F{black}@%f%(0?,%F{blue},%F{red})%M%f %(!,%F{red},%F{cyan})%~%f%b
+%B%(!,%F{red},%F{blue})└%(!,#,»)%f%b "
+export RPROMPT="%(1j,%B%F{yellow}[%j]%f%b,)"
+
+export PROMPT2="%B%F{green}»%f%b "
+
+# Enable stuff like: http://zsh.sourceforge.net/Intro/intro_6.html#SEC6
+DIRSTACKSIZE=8
+setopt autopushd pushdminus pushdsilent pushdtohome
+alias dh='dirs -v'
+
+### Fish-like syntax highlighting
+# Arch way with # pacman -S zsh-syntax-highlighting:
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#Gentoo way with # layman -a mv; emerge zsh-syntax-highlighting
+. /usr/share/zsh/site-contrib/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# I want help!
+autoload -U run-help
+autoload run-help-git
+autoload run-help-svn
+autoload run-help-svk
+unalias run-help
+alias help=run-help
+
+# No delay between install and getting it in my $PATH
+setopt nohashdirs
+
+# Easily set a name for a long directory
+namedir () { $1=$PWD ;  : ~$1 }
+
+# map :h to opening vim's help in fullscreen
+alias :h='noglob :h-helper'
+function :h-helper () { vim +"h" +"h $1" +only +'nnoremap q :q!<CR>'; }
