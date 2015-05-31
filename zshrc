@@ -44,9 +44,13 @@ alias dh='dirs -v'
 
 ### Fish-like syntax highlighting
 # Arch way with # pacman -S zsh-syntax-highlighting:
-#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 #Gentoo way with # layman -a mv; emerge zsh-syntax-highlighting
-. /usr/share/zsh/site-contrib/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f /usr/share/zsh/site-contrib/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+	source /usr/share/zsh/site-contrib/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # I want help!
 autoload -U run-help
