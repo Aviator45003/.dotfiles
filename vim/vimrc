@@ -145,8 +145,8 @@ set number
 "set cursorline
 " Actually don't.
 set nocursorline
-" Spelling by default
-set spell
+" Spelling off by default
+set nospell
 
 
 """ Text Formatting """
