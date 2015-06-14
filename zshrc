@@ -20,14 +20,18 @@ bindkey -v
 
 # Manually added.
 
-alias ls='ls --color=y'
+case `uname` in
+	Linux)
+		alias ls='ls --color=y'
+		alias grep='grep --color=always'
+		;;
+esac
+
 alias l='ls'
 alias la='ls -a'
 alias ll='l -l'
-alias grep='grep --color=always'
-alias tudu='vim ~/todo.otl'
-alias emacs='emacs -nw'
 alias please='sudo'
+alias emacs='emacs -nw'
 
 # Let's colorize our PS1!
 autoload -U colors && colors
