@@ -31,11 +31,18 @@ alias please='sudo'
 
 # Let's colorize our PS1!
 autoload -U colors && colors
-export PROMPT="%B%(!,%F{red},%F{blue})┌-%f%b%F{yellow}(%T)%f %B%(!,%F{red},%F{green})%n%f%F{black}@%f%(0?,%F{blue},%F{red})%M%f %(!,%F{red},%F{cyan})%~%f%b
-%B%(!,%F{red},%F{blue})└%(!,#,»)%f%b "
-export RPROMPT="%(1j,%B%F{yellow}[%j]%f%b,)"
 
-export PROMPT2="%B%F{green}»%f%b "
+if [ $(/usr/bin/locale | /usr/bin/grep -ic "utf") -gt 0 ]; then
+	export PROMPT="%B%(!,%F{red},%F{blue})┌-%f%b%F{yellow}(%T)%f %B%(!,%F{red},%F{green})%n%f%F{black}@%f%(0?,%F{blue},%F{red})%M%f %(!,%F{red},%F{cyan})%~%f%b
+	%B%(!,%F{red},%F{blue})└%(!,#,»)%f%b "
+	export RPROMPT="%(1j,%B%F{yellow}[%j]%f%b,)"
+	export PROMPT2="%B%F{green}»%f%b "
+else
+	export PROMPT="%F{yellow}(%T)%f %B%(!,%F{red},%F{green})%n%f%F{black}@%f%(0?,%F{blue},%F{red})%M%f %(!,%F{red},%F{cyan})%~%f%b
+	%B%(!,%F{red},%F{blue})%(!,#,>)%f%b "
+	export RPROMPT="%(1j,%B%F{yellow}[%j]%f%b,)"
+	export PROMPT2="%B%F{green}>%f%b "
+fi
 
 # Enable stuff like: http://zsh.sourceforge.net/Intro/intro_6.html#SEC6
 DIRSTACKSIZE=8
