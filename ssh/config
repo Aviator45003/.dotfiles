@@ -2,3 +2,14 @@ Host c carbon carbon.collegiumv.org
 	User Aviator
 	HostName carbon.collegiumv.org
 	IdentityFile ~/.ssh/id_ed25519_carbon
+
+Host trivium
+	HostName toyamcox.net
+
+Host thebrain
+	HostName thebrain
+	ProxyCommand ssh -qNTW localhost:2121 trivium
+
+Host rainless
+	HostName rainless
+	ProxyCommand ssh -qNTW %h:%p thebrain
