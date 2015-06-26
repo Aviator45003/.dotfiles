@@ -3,13 +3,13 @@ Host c carbon carbon.collegiumv.org
 	HostName carbon.collegiumv.org
 	IdentityFile ~/.ssh/id_ed25519_carbon
 
-Host trivium
-	HostName toyamcox.net
+Host t tr trivium trivium.dal.toyamcox.net
+	HostName 192.168.1.42
 
-Host thebrain
+Host tb thebrain thebrain.bal.toyamcox.net
 	HostName thebrain
 	ProxyCommand ssh -qNTW localhost:2121 trivium
 
-Host rainless
+Host rl rainless rainless.bal.toyamcox.net
 	HostName rainless
 	ProxyCommand ssh -qNTW %h:%p thebrain
