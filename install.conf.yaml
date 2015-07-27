@@ -89,7 +89,7 @@
         force: false
 
 - shell:
-        - ./setup/vim-plug
+    - ./setup/vim-plug-init
 
 - link:
         ~/.vim/autoload/plug.vim:
@@ -98,3 +98,5 @@
             relink: false
             force: false
 
+- shell:
+    - ./setup/vim-plug-install
