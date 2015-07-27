@@ -1,3 +1,5 @@
+VisualHostKey yes
+
 Host c carbon carbon.collegiumv.org
 	User Aviator
 	HostName carbon.collegiumv.org
