@@ -1,6 +1,6 @@
 VisualHostKey yes
 
-Host c carbon carbon.collegiumv.org
+Host carbon carbon.collegiumv.org
 	User Aviator
 	HostName carbon.collegiumv.org
 	IdentityFile ~/.ssh/id_ed25519_carbon
