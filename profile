@@ -1,4 +1,4 @@
-if [ $(tty | sed 's/\/dev\/\(...\).*/\1/') = "tty" ]; then
+if [ "$(tty | sed 's/\/dev\/\(...\).*/\1/')" = "tty" ]; then
 	if [ -x /usr/bin/ssh-agent ]; then
 		eval `/usr/bin/ssh-agent -s`
 	fi
