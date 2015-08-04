@@ -5,13 +5,25 @@ Host carbon carbon.collegiumv.org
 	HostName carbon.collegiumv.org
 	IdentityFile ~/.ssh/id_ed25519_carbon
 
-Host t tr trivium trivium.dal.toyamcox.net
-	HostName 192.168.1.42
+Host sb shacklebolt shacklebolt.dal.toyamcox.net
+	HostName shacklebolt
+	ProxyCommand ssh -qNTW %h:%p arabella
 
 Host tb thebrain thebrain.bal.toyamcox.net
 	HostName thebrain
-	ProxyCommand ssh -qNTW localhost:2121 trivium
+	ProxyCommand ssh -qNTW localhost:2121 arabella
 
 Host rl rainless rainless.bal.toyamcox.net
 	HostName rainless
 	ProxyCommand ssh -qNTW %h:%p thebrain
+
+Host dd dedalus dedalus.dal.toyamcox.net
+	HostName dedalus
+	ProxyCommand ssh -qNTW %h:%p arabella
+
+Host tk tonks tonks.dal.toyamcox.net
+	HostName tonks
+	ProxyCommand ssh -qNTW %h:%p arabella
+
+Host ar arabella arabella.toyamcox.net arabella.dal.toyamcox.net
+	HostName arabella.toyamcox.net
