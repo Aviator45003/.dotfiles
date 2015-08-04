@@ -32,6 +32,7 @@ alias la='ls -a'
 alias ll='l -l'
 alias please='sudo'
 alias emacs='emacs -nw'
+alias irc='mosh arabella tmux attach'
 
 # Let's colorize our PS1!
 autoload -U colors && colors
