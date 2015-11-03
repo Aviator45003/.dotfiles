@@ -1,12 +1,12 @@
 [user]
-	email = aviator45003@gmail.com
-	name = The Aviator
+	email = Vaelatern@gmail.com
+	name = Toyam Cox
 [core]
 	editor = vim
 [merge]
 	tool = vimdiff
 [github]
-	user = Aviator45003
+	user = Vaelatern
 [color]
 	ui = true
 [push]
