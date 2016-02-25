@@ -237,7 +237,7 @@ URxvt*externalBorder: 0
 ! URxvt*perl-ext-common: string
 
 ! Comma-separated list(s) of perl extension scripts (default: "default") to use in this terminal instance; option -pe.
-! URxvt*perl-ext: string
+URxvt*perl-ext: matcher,selection-popup
 
 ! Perl code to be evaluated when all extensions have been registered. See the urxvtperl(3) manpage.
 ! URxvt*perl-eval: string
@@ -255,7 +255,7 @@ URxvt*externalBorder: 0
 ! URxvt*searchable-scrollback: keysym
 
 ! Specifies the program to be started with a URL argument. Used by the "selection-popup" and "matcher" perl extensions.
-! URxvt*url-launcher: string
+URxvt*url-launcher: firefox
 
 ! Compile frills: Sets the WM_TRANSIENT_FOR property to the given window id.
 ! URxvt*transient-for: windowid
