@@ -1,4 +1,4 @@
-if [ -x /usr/bin/ssh-agent && ! pgrep ssh-agent ]; then
+if [ -x /usr/bin/ssh-agent ] && ! pgrep ssh-agent > /dev/null; then
 	eval `/usr/bin/ssh-agent -s`
 fi
 if [ -x /usr/bin/keychain ]; then
