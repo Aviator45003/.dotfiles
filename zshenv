@@ -1,5 +1,4 @@
 if [ -d ~/bin ]; then
 	export PATH=~/bin:$PATH
 fi
-
-export EDITOR='vim'
+XBPS_CHROOT_CMD=uchroot
