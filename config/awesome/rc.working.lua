@@ -89,33 +89,6 @@ for s = 1, screen.count() do
 end
 -- }}}
 
--- battery warning
-local function trim(s)
-  return s:find'^%s*$' and '' or s:match'^%s*(.*%S)'
-end
-
-local function bat_notification()
-  local f_capacity = assert(io.open("/sys/class/power_supply/BAT0/capacity", "r"))
-  local f_status = assert(io.open("/sys/class/power_supply/BAT0/status", "r"))
-  local bat_capacity = tonumber(f_capacity:read("*all"))
-  local bat_status = trim(f_status:read("*all"))
-
-  if (bat_capacity <= 20 and bat_status == "Discharging") then
-    naughty.notify({ title      = "Battery Warning"
-      , text       = "Battery low! " .. bat_capacity .."%" .. " left!"
-      , fg="#ffffff"
-      , bg="#C91C1C"
-      , timeout    = 15
-      , position   = "top_left"
-    })
-  end
-end
-
-battimer = timer({timeout = 60})
-battimer:connect_signal("timeout", bat_notification)
-battimer:start()
--- end here for battery warning
-
 -- Lock Screen
 local function LockScreen()
 	awful.util.spawn("~/bin/lockscreen.sh")
@@ -145,28 +118,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- {{{ Wibox
-
--- Create a battery widget
-mybatwidget = wibox.widget.textbox()
-vicious.register(mybatwidget, vicious.widgets.bat, function (widget, args)
-                if args[1] == '⌁' or args[1] == '+' or args[1] == '↯' then
-                        state_string = '<span color = "lightgreen">'..args[1]..'</span>'
-                else
-                        state_string = '<span color = "red">'..args[1]..'</span>'
-                end
-
-                if args[2] > 70 then
-                        percent_string = '<span color = "lightgreen">'..args[2]..'%</span>'
-                elseif args[2] > 40 then
-                        percent_string = '<span color = "yellow">'..args[2]..'%</span>'
-                elseif args[2] > 20 then
-                        percent_string = '<span color = "orange">'..args[2]..'%</span>'
-                else
-                        percent_string = '<span color = "red">'..args[2]..'%</span>'
-                end
-
-                return ' '..state_string..percent_string
-        end, 3, "BAT0")
 
 -- Create a textclock widget
 mytextclock = awful.widget.textclock(" %a %b %d, %H:%M ", 4)
@@ -254,7 +205,6 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(mybatwidget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
