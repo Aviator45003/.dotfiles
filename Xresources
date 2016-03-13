@@ -255,7 +255,7 @@ URxvt*perl-ext: matcher,selection-popup
 ! URxvt*searchable-scrollback: keysym
 
 ! Specifies the program to be started with a URL argument. Used by the "selection-popup" and "matcher" perl extensions.
-URxvt*url-launcher: firefox
+URxvt*url-launcher: vimb
 
 ! Compile frills: Sets the WM_TRANSIENT_FOR property to the given window id.
 ! URxvt*transient-for: windowid
