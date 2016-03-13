@@ -1,5 +1,6 @@
 [alias]
 	atc = commit --no-edit --amend --only
+	co = checkout
 	ff = merge --ff-only
 	st = !git status --short --branch && git last
 	staged = diff --cached
