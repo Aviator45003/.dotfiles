@@ -47,6 +47,11 @@
         create: true
         relink: false
         force: false
+    ~/.zprofile:
+        path: zprofile
+        create: true
+        relink: false
+        force: false
     ~/.zshrc:
         path: zshrc
         create: true
