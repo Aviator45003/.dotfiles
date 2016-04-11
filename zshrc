@@ -12,8 +12,8 @@ compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zshhist
-HISTSIZE=1000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=1000000
 setopt appendhistory autocd beep extendedglob nomatch notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
