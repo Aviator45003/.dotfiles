@@ -79,6 +79,7 @@ setopt nohashdirs
 # Easily set a name for a long directory
 namedir () { $1=$PWD ;  : ~$1 }
 
+# Stolen from phy1729
 # map :h to opening vim's help in fullscreen
 alias :h='noglob :h-helper'
 function :h-helper () { vim +"h" +"h $1" +only +'nnoremap q :q!<CR>'; }
