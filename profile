@@ -4,8 +4,15 @@ fi
 if [ -x /usr/bin/gpg-agent ] && ! pgrep gpg-agent > /dev/null; then
 	gpg-agent --daemon
 fi
+
+key_list=
+for file in ~/.ssh/*.pub; do
+	key_list+=" ${file%.pub}"
+done
 if [ -x /usr/bin/keychain ]; then
-	eval `/usr/bin/keychain --eval ~/.ssh/{github_rsa,id_ed25519{,_carbon},id_rsa}`
+	eval `echo $key_list | xargs /usr/bin/keychain --eval`
+elif [ -x /usr/bin/ssh-agent ]; then
+	echo $key_list | xargs /usr/bin/ssh-agent
 fi
 
 if [ "$(tty | sed 's/\/dev\/\(...\).*/\1/')" = "tty" ]; then
