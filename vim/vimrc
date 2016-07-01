@@ -12,18 +12,18 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 		" Formula.
 		"  Github Repo.
 		"  Plug 'name/project'
-		Plug 'vim-scripts/VimOutliner'", { 'for': 'otl' }
 		Plug 'Aviator45003/vim-script-refactor'
 		Plug 'christoomey/vim-tmux-navigator'
 		Plug 'dahu/vim-fanfingtastic'
-		Plug 'saltstack/salt-vim'
-		Plug 'majutsushi/tagbar'
-		Plug 'tpope/vim-eunuch'
-"		Plug 'kien/ctrlp.vim'
-		Plug 'szw/vim-ctrlspace'
-		Plug 'joonty/vdebug', { 'for': 'php' }
-		Plug 'elzr/vim-json'
 		Plug 'dahu/vim-lotr'
+		Plug 'elzr/vim-json'
+		Plug 'joonty/vdebug', { 'for': 'php' }
+"		Plug 'kien/ctrlp.vim'
+		Plug 'majutsushi/tagbar'
+		Plug 'saltstack/salt-vim'
+		Plug 'szw/vim-ctrlspace'
+		Plug 'tpope/vim-eunuch'
+		Plug 'vim-scripts/VimOutliner'", { 'for': 'otl' }
 	call plug#end()
 endif
 
@@ -37,11 +37,11 @@ endif
 
 
 """ Special File Setup """
+" Because we also want our backup files to not be all over.
+set backupdir=~/.vim/backups//
 " Because it gets annoying when you are editing a file in Dropbox and the
 " .swp file gets shared...
 set directory=~/.vim/swaps//
-" Because we also want our backup files to not be all over.
-set backupdir=~/.vim/backups//
 " Undo files.
 set undodir=~/.vim/undo//
 set undofile
