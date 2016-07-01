@@ -5,25 +5,27 @@ set nocompatible
 
 
 """ Vim Plugins and Management """
-" Plug setup.
-call plug#begin('~/.vim/plugged')
-	" Formula.
-	"  Github Repo.
-	"  Plug 'name/project'
-	Plug 'vim-scripts/VimOutliner'", { 'for': 'otl' }
-	Plug 'Aviator45003/vim-script-refactor'
-	Plug 'christoomey/vim-tmux-navigator'
-	Plug 'dahu/vim-fanfingtastic'
-	Plug 'saltstack/salt-vim'
-	Plug 'majutsushi/tagbar'
-	Plug 'tpope/vim-eunuch'
-"	Plug 'kien/ctrlp.vim'
-	Plug 'szw/vim-ctrlspace'
-	Plug 'joonty/vdebug', { 'for': 'php' }
-	Plug 'elzr/vim-json'
-	Plug 'dahu/vim-lotr'
-call plug#end()
-" Plug end.
+" Ensure that vim-plug exists
+if !empty(glob('~/.vim/autoload/plug.vim'))
+	" Plug setup.
+	call plug#begin('~/.vim/plugged')
+		" Formula.
+		"  Github Repo.
+		"  Plug 'name/project'
+		Plug 'vim-scripts/VimOutliner'", { 'for': 'otl' }
+		Plug 'Aviator45003/vim-script-refactor'
+		Plug 'christoomey/vim-tmux-navigator'
+		Plug 'dahu/vim-fanfingtastic'
+		Plug 'saltstack/salt-vim'
+		Plug 'majutsushi/tagbar'
+		Plug 'tpope/vim-eunuch'
+"		Plug 'kien/ctrlp.vim'
+		Plug 'szw/vim-ctrlspace'
+		Plug 'joonty/vdebug', { 'for': 'php' }
+		Plug 'elzr/vim-json'
+		Plug 'dahu/vim-lotr'
+	call plug#end()
+endif
 
 
 " For backup versioning.
