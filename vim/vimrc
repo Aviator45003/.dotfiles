@@ -29,7 +29,7 @@ endif
 
 
 " For backup versioning.
-if has("vms")
+if has('vms')
 	set nobackup    " do not keep a backup file, use versions instead
 else
 	set backup      " keep a backup file
@@ -49,7 +49,7 @@ set undofile
 
 """ Leader Commands """
 " Change the map-leader.
-let mapleader=","
+let mapleader=','
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ve :tabe $MYVIMRC<CR>
 nmap <silent> <leader>vs :so $MYVIMRC<CR>
