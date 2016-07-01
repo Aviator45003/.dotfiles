@@ -5,29 +5,31 @@ set nocompatible
 
 
 """ Vim Plugins and Management """
-" Plug setup.
-call plug#begin('~/.vim/plugged')
-	" Formula.
-	"  Github Repo.
-	"  Plug 'name/project'
-	Plug 'vim-scripts/VimOutliner'", { 'for': 'otl' }
-	Plug 'Aviator45003/vim-script-refactor'
-	Plug 'christoomey/vim-tmux-navigator'
-	Plug 'dahu/vim-fanfingtastic'
-	Plug 'saltstack/salt-vim'
-	Plug 'majutsushi/tagbar'
-	Plug 'tpope/vim-eunuch'
-"	Plug 'kien/ctrlp.vim'
-	Plug 'szw/vim-ctrlspace'
-	Plug 'joonty/vdebug', { 'for': 'php' }
-	Plug 'elzr/vim-json'
-	Plug 'dahu/vim-lotr'
-call plug#end()
-" Plug end.
+" Ensure that vim-plug exists
+if !empty(glob('~/.vim/autoload/plug.vim'))
+	" Plug setup.
+	call plug#begin('~/.vim/plugged')
+		" Formula.
+		"  Github Repo.
+		"  Plug 'name/project'
+		Plug 'Aviator45003/vim-script-refactor'
+		Plug 'christoomey/vim-tmux-navigator'
+		Plug 'dahu/vim-fanfingtastic'
+		Plug 'dahu/vim-lotr'
+		Plug 'elzr/vim-json'
+		Plug 'joonty/vdebug', { 'for': 'php' }
+"		Plug 'kien/ctrlp.vim'
+		Plug 'majutsushi/tagbar'
+		Plug 'saltstack/salt-vim'
+		Plug 'szw/vim-ctrlspace'
+		Plug 'tpope/vim-eunuch'
+		Plug 'vim-scripts/VimOutliner'", { 'for': 'otl' }
+	call plug#end()
+endif
 
 
 " For backup versioning.
-if has("vms")
+if has('vms')
 	set nobackup    " do not keep a backup file, use versions instead
 else
 	set backup      " keep a backup file
@@ -35,19 +37,19 @@ endif
 
 
 """ Special File Setup """
+" Because we also want our backup files to not be all over.
+set backupdir=~/.vim/backups//
 " Because it gets annoying when you are editing a file in Dropbox and the
 " .swp file gets shared...
-set dir=~/.vim/swaps
-" Because we also want our backup files to not be all over.
-set backupdir=~/.vim/backups
+set directory=~/.vim/swaps//
 " Undo files.
-set undodir=~/.vim/undo
+set undodir=~/.vim/undo//
 set undofile
 
 
 """ Leader Commands """
 " Change the map-leader.
-let mapleader=","
+let mapleader=','
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ve :tabe $MYVIMRC<CR>
 nmap <silent> <leader>vs :so $MYVIMRC<CR>
@@ -178,21 +180,6 @@ set autoindent
 syntax on
 " This will fold us.
 set foldmethod=syntax
-" Python Stuff
-au FileType py set expandtab
-au FileType py set tabstop=4
-au FileType py set softtabstop=4
-au FileType py set shiftwidth=4
-" Javascript Stuff
-au FileType javascript set expandtab
-au FileType javascript set tabstop=2
-au FileType javascript set softtabstop=2
-au FileType javascript set shiftwidth=2
-" YAML Stuff
-au FileType yaml set expandtab
-au FileType yaml set tabstop=4
-au FileType yaml set softtabstop=4
-au FileType yaml set shiftwidth=4
 " Refactor Plugin maps
 nnoremap <leader>ree :call ExtractMethod()<ENTER>
 nnoremap <leader>rep :call LocalVariableToParameter()<ENTER>
