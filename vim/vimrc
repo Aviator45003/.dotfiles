@@ -37,11 +37,11 @@ endif
 """ Special File Setup """
 " Because it gets annoying when you are editing a file in Dropbox and the
 " .swp file gets shared...
-set dir=~/.vim/swaps
+set dir=~/.vim/swaps//
 " Because we also want our backup files to not be all over.
-set backupdir=~/.vim/backups
+set backupdir=~/.vim/backups//
 " Undo files.
-set undodir=~/.vim/undo
+set undodir=~/.vim/undo//
 set undofile
 
 
