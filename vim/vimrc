@@ -180,21 +180,6 @@ set autoindent
 syntax on
 " This will fold us.
 set foldmethod=syntax
-" Python Stuff
-au FileType py set expandtab
-au FileType py set tabstop=4
-au FileType py set softtabstop=4
-au FileType py set shiftwidth=4
-" Javascript Stuff
-au FileType javascript set expandtab
-au FileType javascript set tabstop=2
-au FileType javascript set softtabstop=2
-au FileType javascript set shiftwidth=2
-" YAML Stuff
-au FileType yaml set expandtab
-au FileType yaml set tabstop=4
-au FileType yaml set softtabstop=4
-au FileType yaml set shiftwidth=4
 " Refactor Plugin maps
 nnoremap <leader>ree :call ExtractMethod()<ENTER>
 nnoremap <leader>rep :call LocalVariableToParameter()<ENTER>
