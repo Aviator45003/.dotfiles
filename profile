@@ -5,14 +5,14 @@ if [ -x /usr/bin/gpg-agent ] && ! pgrep gpg-agent > /dev/null; then
 	gpg-agent --daemon
 fi
 
-key_list=
-for file in ~/.ssh/*.pub; do
-	key_list+=" ${file%.pub}"
+KEY_LIST=
+for KEY_FILE in ~/.ssh/*.pub; do
+	KEY_LIST+=" ${KEY_FILE%.pub}"
 done
 if [ -x /usr/bin/keychain ]; then
-	eval `echo $key_list | xargs /usr/bin/keychain --eval`
+	eval `echo $KEY_LIST | xargs /usr/bin/keychain --eval`
 elif [ -x /usr/bin/ssh-add ]; then
-	echo $key_list | xargs /usr/bin/ssh-add
+	echo $KEY_LIST | xargs /usr/bin/ssh-add
 fi
 
 if [ "$(tty | sed 's/\/dev\/\(...\).*/\1/')" = "tty" ]; then
