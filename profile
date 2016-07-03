@@ -11,8 +11,8 @@ for file in ~/.ssh/*.pub; do
 done
 if [ -x /usr/bin/keychain ]; then
 	eval `echo $key_list | xargs /usr/bin/keychain --eval`
-elif [ -x /usr/bin/ssh-agent ]; then
-	echo $key_list | xargs /usr/bin/ssh-agent
+elif [ -x /usr/bin/ssh-add ]; then
+	echo $key_list | xargs /usr/bin/ssh-add
 fi
 
 if [ "$(tty | sed 's/\/dev\/\(...\).*/\1/')" = "tty" ]; then
