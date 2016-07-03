@@ -5,6 +5,7 @@
 	st = !git status --short --branch && git last
 	staged = diff --cached
 	last = log --oneline -n 1
+	lg = log --graph --date=short --oneline --decorate=auto
 [user]
 	email = Vaelatern@gmail.com
 	name = Toyam Cox
