@@ -39,16 +39,21 @@ alias mosh='LC_ALL=en_US.UTF-8 mosh'
 autoload -U colors && colors
 
 if [ $(/usr/bin/locale | grep -ic "utf") -gt 0 ]; then
-	export PROMPT="%B%(!,%F{red},%F{blue})┌-%f%b%F{yellow}(%T)%f %B%(!,%F{red},%F{green})%n%f%F{black}@%f%(0?,%F{blue},%F{red})%M%f %(!,%F{red},%F{cyan})%~%f%b
+	function update_prompt() {
+		export PROMPT="%B%(!,%F{red},%F{blue})┌-%f%b%F{yellow}(%T)%f$TIME_LAST_EXEC %B%(!,%F{red},%F{green})%n%f%F{black}@%f%(0?,%F{blue},%F{red})%M%f %(!,%F{red},%F{cyan})%~%f%b
 %B%(!,%F{red},%F{blue})└%(!,#,»)%f%b "
+	}
 	export RPROMPT="%(1j,%B%F{yellow}[%j]%f%b,)"
 	export PROMPT2="%B%F{green}»%f%b "
 else
-	export PROMPT="%F{yellow}(%T)%f %B%(!,%F{red},%F{green})%n%f%F{black}@%f%(0?,%F{blue},%F{red})%M%f %(!,%F{red},%F{cyan})%~%f%b
+	function update_prompt() {
+		export PROMPT="%F{yellow}(%T)%f$TIME_LAST_EXEC%B%(!,%F{red},%F{green})%n%f%F{black}@%f%(0?,%F{blue},%F{red})%M%f %(!,%F{red},%F{cyan})%~%f%b
 %B%(!,%F{red},%F{blue})%(!,#,>)%f%b "
+	}
 	export RPROMPT="%(1j,%B%F{yellow}[%j]%f%b,)"
 	export PROMPT2="%B%F{green}>%f%b "
 fi
+update_prompt
 
 # Enable stuff like: http://zsh.sourceforge.net/Intro/intro_6.html#SEC6
 DIRSTACKSIZE=8
@@ -83,3 +88,21 @@ namedir () { $1=$PWD ;  : ~$1 }
 # map :h to opening vim's help in fullscreen
 alias :h='noglob :h-helper'
 function :h-helper () { vim +"h" +"h $1" +only +'nnoremap q :q!<CR>'; }
+
+# Kudos to
+# https://coderwall.com/p/kmchbw/zsh-display-commands-runtime-in-prompt
+function preexec() {
+  timer=${timer:-$SECONDS}
+}
+function precmd() {
+  if [ $timer ]; then
+    timer_show=$(($SECONDS - $timer))
+    if [ $timer_show -gt 0 ]; then
+	    export TIME_LAST_EXEC=" %F{cyan}${timer_show}s%f"
+    else
+	    export TIME_LAST_EXEC=
+    fi
+    update_prompt
+    unset timer
+  fi
+}
