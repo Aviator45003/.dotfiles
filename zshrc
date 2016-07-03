@@ -92,17 +92,28 @@ function :h-helper () { vim +"h" +"h $1" +only +'nnoremap q :q!<CR>'; }
 # Kudos to
 # https://coderwall.com/p/kmchbw/zsh-display-commands-runtime-in-prompt
 function preexec() {
-  timer=${timer:-$SECONDS}
+  TIMER=${TIMER:-$SECONDS}
 }
 function precmd() {
-  if [ $timer ]; then
-    timer_show=$(($SECONDS - $timer))
-    if [ $timer_show -gt 0 ]; then
-	    export TIME_LAST_EXEC=" %F{cyan}${timer_show}s%f"
+  if [ $TIMER ]; then
+    TIMER_HOURS=$(( ($SECONDS - $TIMER)/(60*60) | 0))
+    TIMER_MINS=$(( (($SECONDS - $TIMER)/60) % 60 | 0))
+    TIMER_SECS=$(( ($SECONDS - $TIMER)%60 | 0))
+    TIMER_SHOW=
+    # Hours
+    [ "$TIMER_HOURS" -gt 0 ] && TIMER_SHOW+="${TIMER_HOURS}:"
+    # Minutes. Order of the next two lines matters.
+    [ "$TIMER_SHOW" ] && TIMER_SHOW+="$(printf "%02d:" "${TIMER_MINS}")"
+    [ "$TIMER_MINS" -gt 0 -a -z "$TIMER_SHOW" ] && TIMER_SHOW+="$(printf "%s:" "${TIMER_MINS}")"
+    # Seconds
+    [ "$TIMER_SHOW" ] && TIMER_SHOW+="$(printf "%02d" "${TIMER_SECS}")"
+    [ "$TIMER_SECS" -gt 0 -a -z "$TIMER_SHOW" ] && TIMER_SHOW+="${TIMER_SECS}s"
+    if [ $TIMER_SHOW ]; then
+	    export TIME_LAST_EXEC=" %F{cyan}${TIMER_SHOW}%f"
     else
 	    export TIME_LAST_EXEC=
     fi
     update_prompt
-    unset timer
+    unset TIMER{,_{SHOW,{HOUR,MIN,SEC}S}} TIME_LAST_EXEC
   fi
 }
