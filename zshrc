@@ -47,7 +47,7 @@ if [ $(/usr/bin/locale | grep -ic "utf") -gt 0 ]; then
 	export PROMPT2="%B%F{green}»%f%b "
 else
 	function update_prompt() {
-		export PROMPT="%F{yellow}(%T)%f$TIME_LAST_EXEC%B%(!,%F{red},%F{green})%n%f%F{black}@%f%(0?,%F{blue},%F{red})%M%f %(!,%F{red},%F{cyan})%~%f%b
+		export PROMPT="%F{yellow}(%T)%f$TIME_LAST_EXEC %B%(!,%F{red},%F{green})%n%f%F{black}@%f%(0?,%F{blue},%F{red})%M%f %(!,%F{red},%F{cyan})%~%f%b
 %B%(!,%F{red},%F{blue})%(!,#,>)%f%b "
 	}
 	export RPROMPT="%(1j,%B%F{yellow}[%j]%f%b,)"
