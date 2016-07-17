@@ -96,9 +96,10 @@ function preexec() {
 }
 function precmd() {
   if [ $TIMER ]; then
-    TIMER_HOURS=$(( ($SECONDS - $TIMER)/(60*60) | 0))
-    TIMER_MINS=$(( (($SECONDS - $TIMER)/60) % 60 | 0))
-    TIMER_SECS=$(( ($SECONDS - $TIMER)%60 | 0))
+    TIMER_DIFF=$(( $SECONDS - $TIMER ))
+    TIMER_HOURS=$(( $TIMER_DIFF / (60*60) | 0))
+    TIMER_MINS=$(( ($TIMER_DIFF / 60) % 60 | 0))
+    TIMER_SECS=$(( $TIMER_DIFF % 60 | 0))
     TIMER_SHOW=
     # Hours
     [ "$TIMER_HOURS" -gt 0 ] && TIMER_SHOW+="${TIMER_HOURS}:"
@@ -114,6 +115,6 @@ function precmd() {
 	    export TIME_LAST_EXEC=
     fi
     update_prompt
-    unset TIMER{,_{SHOW,{HOUR,MIN,SEC}S}} TIME_LAST_EXEC
+    unset TIMER{,_{SHOW,DIFF,{HOUR,MIN,SEC}S}} TIME_LAST_EXEC
   fi
 }
