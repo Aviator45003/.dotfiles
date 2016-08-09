@@ -30,9 +30,9 @@ endif
 
 " For backup versioning.
 if has('vms')
-	set nobackup    " do not keep a backup file, use versions instead
+	set nobackup " do not keep a backup file, use versions instead
 else
-	set backup      " keep a backup file
+	set backup " keep a backup file
 endif
 
 
@@ -198,3 +198,49 @@ augroup Xdefaults
 	" And write.
 	autocmd BufWritePost,FileWritePost ~/.Xresources !xrdb -merge ~/.Xresources
 augroup END
+
+
+""" Remove unwanted whitespace on buffer write """
+" Remove trailing whitespace (end of line and end of file)
+function! StripTrailWhitespace()
+	" Save the current cursor position
+	let l:save_view = winsaveview()
+	" Perform check to let buffers keep their end of line whitespace
+	if !exists('b:keepLineTrailWhitespace')
+		" Remove non-newline whitespace at end of lines
+		silent :%s/\s\+$//e
+	endif
+	" Perform check to let buffers keep their end of file whitespace
+	if !exists('b:keepFileTrailWhitespace')
+		" Remove blank lines (including lines consisting of whitespace)
+		silent :vglobal/\_s*\S/d
+	endif
+	" Restore the original cursor position
+	call winrestview(l:save_view)
+endfunction
+autocmd BufWritePre * :call StripTrailWhitespace()
+" Normalize the number of consecutive blank (empty or whitespace only) lines
+function! NormalizeBlankLines()
+	" Save the current cursor position
+	let l:save_view = winsaveview()
+	" Let each buffer determine how many consecutive lines are allowed
+	if exists('b:maxConsecutiveEmptyLines')
+		let l:newLines = ''
+		let l:numLines = 0
+		" Exceed desired lines by one to accomodate for newline at end of text
+		while l:numLines <= b:maxConsecutiveEmptyLines
+			let l:newLines .= '\r'
+			let l:numLines += 1
+		endwhile
+		" Exceed desired lines by one to accomodate for newline at end of text
+		let l:numLines = b:maxConsecutiveEmptyLines + 1
+		" Perform the actual replacement
+		silent execute ':%s/\n\{'.l:numLines.',}/'.l:newLines.'/e'
+	" If the buffer does not specify, limit consecutive lines to 1
+	else
+		silent :%s/\n\{2,}/\r\r/e
+	endif
+	" Restore the original cursor position
+	call winrestview(l:save_view)
+endfunction
+autocmd BufWritePre * :call NormalizeBlankLines()
