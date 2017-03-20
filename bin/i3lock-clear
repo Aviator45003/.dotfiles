@@ -1,0 +1,2 @@
+#!/bin/sh
+i3lock -f -r 1 -s 0.0001
