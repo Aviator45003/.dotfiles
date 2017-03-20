@@ -166,8 +166,8 @@ set showcmd
 set showmatch
 " Auto indentation.
 set autoindent
-" Syntax always on, please.
-syntax on
+" Syntax always off, please.
+syntax off
 " This will fold us.
 set foldmethod=syntax
 " Refactor Plugin maps
