@@ -3,7 +3,6 @@
 "    of functionality any more.
 set nocompatible
 
-
 """ Vim Plugins and Management """
 " Ensure that vim-plug exists
 if !empty(glob('~/.vim/autoload/plug.vim'))
@@ -27,14 +26,12 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 	call plug#end()
 endif
 
-
 " For backup versioning.
 if has('vms')
 	set nobackup " do not keep a backup file, use versions instead
 else
 	set backup " keep a backup file
 endif
-
 
 """ Special File Setup """
 " Because we also want our backup files to not be all over.
@@ -45,7 +42,6 @@ set directory=~/.vim/swaps//
 " Undo files.
 set undodir=~/.vim/undo//
 set undofile
-
 
 """ Leader Commands """
 " Change the map-leader.
@@ -68,7 +64,6 @@ inoremap <leader>w <C-o>:w<CR>
 " Toggle the tagbar, https://github.com/majutsushi/tagbar
 nnoremap <leader>t :TagbarToggle<CR>
 
-
 """ Shortcuts """
 " Toggle "Paste Mode"
 set pastetoggle=<F2>
@@ -76,7 +71,6 @@ set pastetoggle=<F2>
 nnoremap <F3> :setlocal spell! spelllang=en_us<CR>
 " And I want to get out of insert mode with ii.
 " inoremap ii <C-o>
-
 
 " Search settings
 " If you tack on a /g to the end of your s&r line, only the first. Otherwise,
@@ -91,7 +85,6 @@ set showmatch
 set hlsearch
 " And <leader><space> clears the search
 nnoremap <leader><space> :noh<cr>
-
 
 """ Movement Shortcuts """
 " To force me to do things right. No arrow keys.
@@ -117,7 +110,6 @@ nnoremap <tab> %
 vnoremap <tab> %
 " Backspace over everything.
 set backspace=indent,eol,start
-
 
 """ Environment Settings """
 " Use UTF-8
@@ -153,7 +145,6 @@ set nocursorline
 " Spelling off by default
 set nospell
 
-
 """ Text Formatting """
 " Formatting magic.
 set formatoptions=rwnl1j
@@ -162,14 +153,12 @@ set wrap  " Keep them going.
 set textwidth=79
 set colorcolumn=80
 
-
 """ Vim Commands """
 " Completion of commands.
 set wildmenu
 set wildmode=list:longest
 " Show information.
 set showcmd
-
 
 """ Coding Settings """
 " set show matching parenthesis
@@ -188,7 +177,6 @@ nnoremap <leader>rer :call RemoveParameter()<ENTER>
 nnoremap <leader>reo :call ReorderParameters()<ENTER>
 nnoremap <leader>rec :call IntroduceConstant()<ENTER>
 
-
 """ Special Commands for Specific Files """
 " Reload Xresources when it changes
 augroup Xdefaults
@@ -198,7 +186,6 @@ augroup Xdefaults
 	" And write.
 	autocmd BufWritePost,FileWritePost ~/.Xresources !xrdb -merge ~/.Xresources
 augroup END
-
 
 """ Remove unwanted whitespace on buffer write """
 " Remove trailing whitespace (end of line and end of file)
