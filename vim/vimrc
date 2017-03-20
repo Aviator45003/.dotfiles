@@ -15,14 +15,14 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 		Plug 'christoomey/vim-tmux-navigator'
 		Plug 'dahu/vim-fanfingtastic'
 		Plug 'dahu/vim-lotr'
-		Plug 'elzr/vim-json'
+"		Plug 'elzr/vim-json', { 'for': 'php' }
 		Plug 'joonty/vdebug', { 'for': 'php' }
 "		Plug 'kien/ctrlp.vim'
 		Plug 'majutsushi/tagbar'
 		Plug 'saltstack/salt-vim'
 		Plug 'szw/vim-ctrlspace'
 		Plug 'tpope/vim-eunuch'
-		Plug 'vim-scripts/VimOutliner'", { 'for': 'otl' }
+"		Plug 'vim-scripts/VimOutliner'", { 'for': 'otl' }
 	call plug#end()
 endif
 
