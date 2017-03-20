@@ -23,6 +23,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 		Plug 'szw/vim-ctrlspace'
 		Plug 'tpope/vim-eunuch'
 "		Plug 'vim-scripts/VimOutliner'", { 'for': 'otl' }
+		Plug 'dkarter/bullets.vim'
 	call plug#end()
 endif
 
