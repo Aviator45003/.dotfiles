@@ -1,6 +1,7 @@
 /usr/bin/xmodmap ~/.Xmodmap &
 xcape -e 'Control_L=Escape' &
-~/bin/trackpadsetup.sh
+~/bin/trackpadsetup.sh &
 unset TMUX
 redshift -m randr &
-exec awesome
+slstatus &
+exec dwm
