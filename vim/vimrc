@@ -36,13 +36,18 @@ endif
 
 """ Special File Setup """
 " Because we also want our backup files to not be all over.
-set backupdir=~/.vim/backups//
+execute 'set backupdir='$HOME.'/.vim/backups//'
+call mkdir(&backupdir, 'p', 0700)
 " Because it gets annoying when you are editing a file in Dropbox and the
 " .swp file gets shared...
-set directory=~/.vim/swaps//
+execute 'set directory='$HOME.'/.vim/swaps//'
+call mkdir(&directory, 'p', 0700)
 " Undo files.
-set undodir=~/.vim/undo//
-set undofile
+if has('persistent_undo')
+	execute 'set undodir='$HOME.'/.vim/undo//'
+	call mkdir(&undodir, 'p', 0700)
+	set undofile
+endif
 
 """ Leader Commands """
 " Change the map-leader.
