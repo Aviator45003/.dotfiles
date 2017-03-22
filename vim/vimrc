@@ -18,6 +18,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 "		Plug 'elzr/vim-json', { 'for': 'php' }
 		Plug 'joonty/vdebug', { 'for': 'php' }
 "		Plug 'kien/ctrlp.vim'
+		Plug 'lafrenierejm/wstrip.vim' " strip trailing whitespace on changed lines
 		Plug 'majutsushi/tagbar'
 		Plug 'saltstack/salt-vim'
 		Plug 'szw/vim-ctrlspace'
@@ -194,15 +195,12 @@ augroup Xdefaults
 augroup END
 
 """ Remove unwanted whitespace on buffer write """
-" Remove trailing whitespace (end of line and end of file)
+" Strip line-trailing whitespace with wstrip.vim
+let g:wstrip_auto = 1
+" Remove buffer-trailing whitespace
 function! StripTrailWhitespace()
 	" Save the current cursor position
 	let l:save_view = winsaveview()
-	" Perform check to let buffers keep their end of line whitespace
-	if !exists('b:keepLineTrailWhitespace')
-		" Remove non-newline whitespace at end of lines
-		silent :%s/\s\+$//e
-	endif
 	" Perform check to let buffers keep their end of file whitespace
 	if !exists('b:keepFileTrailWhitespace')
 		" Remove blank lines (including lines consisting of whitespace)
