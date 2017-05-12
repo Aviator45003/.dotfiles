@@ -3,5 +3,5 @@ xcape -e 'Control_L=Escape' &
 ~/bin/trackpadsetup.sh &
 unset TMUX
 redshift -m randr &
-slstatus &
+~/bin/dwmstatus &
 exec dwm
