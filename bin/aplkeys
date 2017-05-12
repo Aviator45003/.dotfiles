@@ -1,0 +1,9 @@
+#!/bin/sh
+# http://dfns.dyalog.com/n_keyboards.htm
+
+setxkbmap -layout 'us(altgr-intl),apl(dyalog)' \
+  -option 'grp:alt_shift_toggle,compose:menu'
+xmodmap -e 'keycode 66 = ISO_Group_Shift ISO_Group_Shift ISO_First_Group NoSymbol'
+# These were XF86Back, XF86Next
+xmodmap -e "keycode 166 = Prior Prior Home Home"
+xmodmap -e "keycode 167 = Next Next End End"
