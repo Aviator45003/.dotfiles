@@ -37,16 +37,16 @@ endif
 
 """ Special File Setup """
 " Because we also want our backup files to not be all over.
-execute 'set backupdir='$HOME.'/.vim/backups//'
-call mkdir(&backupdir, 'p', 0700)
+set backupdir=$HOME/.vim/backups//
+"call mkdir(&backupdir, 'p', 0700)
 " Because it gets annoying when you are editing a file in Dropbox and the
 " .swp file gets shared...
-execute 'set directory='$HOME.'/.vim/swaps//'
-call mkdir(&directory, 'p', 0700)
+set directory=$HOME/.vim/swaps//
+"call mkdir(&directory, 'p', 0700)
 " Undo files.
 if has('persistent_undo')
-	execute 'set undodir='$HOME.'/.vim/undo//'
-	call mkdir(&undodir, 'p', 0700)
+	set undodir=$HOME/.vim/undo//
+"	call mkdir(&undodir, 'p', 0700)
 	set undofile
 endif
 
