@@ -2,3 +2,4 @@ config/vimprobable/cookies
 config/vimprobable/history
 vim/autoload/plug.vim
 vim/autoload/plug.vim.old
+bin/dwmstatus
